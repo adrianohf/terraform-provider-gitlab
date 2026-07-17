@@ -176,6 +176,7 @@ resource "gitlab_project" "import_private" {
 - `import_url_username` (String) The username for the `import_url`. The value of this field is used to construct a valid `import_url` and is only related to the provider. This field cannot be imported using `terraform import`.  See the examples section for how to properly use it.
 - `infrastructure_access_level` (String) Set the infrastructure access level. Valid values are `disabled`, `private`, `enabled`.
 - `initialize_with_readme` (Boolean) Create main branch with first commit containing a README.md file. Must be set to `true` if importing an uninitialized project with a different `default_branch`.
+- `issue_branch_template` (String) Sets the template for branch names suggested when creating a branch from an issue.
 - `issues_access_level` (String) Set the issues access level. Valid values are `disabled`, `private`, `enabled`.
 - `issues_template` (String) Sets the template for new issues in the project.
 - `keep_latest_artifact` (Boolean) Disable or enable the ability to keep the latest artifact for this project.

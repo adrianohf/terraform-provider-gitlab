@@ -39,6 +39,7 @@ data "gitlab_group" "foo" {
 
 - `allow_merge_on_skipped_pipeline` (Boolean) Default to allowing merge on a skipped pipeline for new projects in the group.
 - `allowed_email_domains_list` (String) Comma-separated list of email address domains allowed to be added as group members.
+- `archived` (Boolean) Whether the group is archived.
 - `auto_devops_enabled` (Boolean) Default to Auto DevOps pipeline for all projects within this group.
 - `avatar_url` (String) URL of the group avatar.
 - `created_at` (String) Timestamp at which the group was created.
@@ -47,8 +48,12 @@ data "gitlab_group" "foo" {
 - `default_branch_protection` (Number, Deprecated) Whether developers and maintainers can push to the applicable default branch. Use `default_branch_protection_defaults` instead, to be removed in 19.0.
 - `default_branch_protection_defaults` (Attributes List) Default protection settings applied to the default branch of new projects in this group. (see [below for nested schema](#nestedatt--default_branch_protection_defaults))
 - `description` (String) The description of the group.
+- `duo_availability` (String) Indicates whether GitLab Duo features are enabled for the group. Valid values are `default_on`, `default_off`, `never_on`.
+- `duo_features_enabled` (Boolean) Whether GitLab Duo features are enabled for the group.
 - `emails_disabled` (Boolean, Deprecated) Whether email notifications are disabled for this group. Use `emails_enabled` instead, to be removed in 19.0.
 - `emails_enabled` (Boolean) Whether email notifications are enabled for this group.
+- `enabled_git_access_protocol` (String) Restrict access to group by allowing only certain protocols. Valid values are `ssh`, `http`, `all`.
+- `experiment_features_enabled` (Boolean) Whether experimental features are enabled for the group.
 - `extra_shared_runners_minutes_limit` (Number) Available in Self-Managed, Premium and Ultimate plans. Can be set by administrators only. Additional CI/CD minutes for this group.
 - `file_template_project_id` (Number) The ID of the project used to load custom file templates.
 - `full_name` (String) The full name of the group.
@@ -57,13 +62,17 @@ data "gitlab_group" "foo" {
 - `ldap_access` (Number) Default access level for members synced from LDAP.
 - `ldap_cn` (String) LDAP common name used to sync members from an LDAP group.
 - `lfs_enabled` (Boolean) Boolean, is LFS enabled for projects in this group.
+- `lock_duo_features_enabled` (Boolean) Whether the GitLab Duo features setting is enforced for all subgroups.
+- `lock_math_rendering_limits_enabled` (Boolean) Whether the math rendering limits setting is enforced for all subgroups.
 - `marked_for_deletion_on` (String) Date on which the group was marked for deletion.
+- `math_rendering_limits_enabled` (Boolean) Whether math rendering limits are enabled for the group.
 - `max_artifacts_size` (Number) Maximum artifacts size for the group, in MB.
 - `membership_lock` (Boolean) Users cannot be added to projects in this group.
 - `mentions_disabled` (Boolean) Whether mentions are disabled for this group.
 - `name` (String) The name of this group.
 - `only_allow_merge_if_all_discussions_are_resolved` (Boolean) Default to only allowing merge if all discussions are resolved for new projects in the group.
 - `only_allow_merge_if_pipeline_succeeds` (Boolean) Default to only allowing merge if the pipeline succeeds for new projects in the group.
+- `organization_id` (Number) The ID of the organization this group belongs to.
 - `parent_id` (Number) Integer, ID of the parent group.
 - `path` (String) The path of the group.
 - `prevent_forking_outside_group` (Boolean) When enabled, users can not fork projects from this group to external namespaces.

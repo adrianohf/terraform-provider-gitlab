@@ -8,6 +8,7 @@ description: |-
   -> This resource requires an Ultimate license.
   -> Most custom roles are considered billable users that use a seat. Custom roles billing and seat usage https://docs.gitlab.com/user/custom_roles/
   -> There can be only 10 custom roles on your instance or namespace. See issue 450929 https://gitlab.com/gitlab-org/gitlab/-/issues/450929 for more details.
+  -> READ_ADMIN_* permissions grant read-only access to the Admin Area and cannot be used on a member role. Use the gitlab_admin_role resource to create a custom admin role instead.
   Upstream API: GitLab GraphQL API docs https://docs.gitlab.com/api/graphql/reference/#mutationmemberrolecreate
 ---
 
@@ -22,6 +23,8 @@ Custom roles allow an organization to create user roles with the precise privile
 -> Most custom roles are considered billable users that use a seat. [Custom roles billing and seat usage](https://docs.gitlab.com/user/custom_roles/)
 
 -> There can be only 10 custom roles on your instance or namespace. See [issue 450929](https://gitlab.com/gitlab-org/gitlab/-/issues/450929) for more details.
+
+-> `READ_ADMIN_*` permissions grant read-only access to the Admin Area and cannot be used on a member role. Use the `gitlab_admin_role` resource to create a custom admin role instead.
 
 **Upstream API**: [GitLab GraphQL API docs](https://docs.gitlab.com/api/graphql/reference/#mutationmemberrolecreate)
 
@@ -58,8 +61,8 @@ resource "gitlab_member_role" "example" {
 
 ### Required
 
-- `base_access_level` (String) The base access level for the custom role. Valid values are: `DEVELOPER`, `GUEST`, `MAINTAINER`, `MINIMAL_ACCESS`, `OWNER`, `REPORTER`
-- `enabled_permissions` (Set of String) All permissions enabled for the custom role. Valid values are: `ADMIN_AI_CATALOG_ITEM`, `ADMIN_AI_CATALOG_ITEM_CONSUMER`, `ADMIN_CICD_VARIABLES`, `ADMIN_COMPLIANCE_FRAMEWORK`, `ADMIN_GROUP_MEMBER`, `ADMIN_INTEGRATIONS`, `ADMIN_MERGE_REQUEST`, `ADMIN_PROTECTED_BRANCH`, `ADMIN_PROTECTED_ENVIRONMENTS`, `ADMIN_PUSH_RULES`, `ADMIN_RUNNERS`, `ADMIN_SECURITY_ATTRIBUTES`, `ADMIN_TERRAFORM_STATE`, `ADMIN_VULNERABILITY`, `ADMIN_WEB_HOOK`, `APPLY_SECURITY_SCAN_PROFILES`, `ARCHIVE_PROJECT`, `MANAGE_DEPLOY_TOKENS`, `MANAGE_GROUP_ACCESS_TOKENS`, `MANAGE_MERGE_REQUEST_SETTINGS`, `MANAGE_PROJECT_ACCESS_TOKENS`, `MANAGE_SECURITY_POLICY_LINK`, `READ_ADMIN_CICD`, `READ_ADMIN_GROUPS`, `READ_ADMIN_PROJECTS`, `READ_ADMIN_SUBSCRIPTION`, `READ_ADMIN_MONITORING`, `READ_ADMIN_USERS`, `READ_ADMIN_DASHBOARD`, `READ_CODE`, `READ_COMPLIANCE_DASHBOARD`, `READ_CRM_CONTACT`, `READ_DEPENDENCY`, `READ_RUNNERS`, `READ_VULNERABILITY`, `REMOVE_GROUP`, `REMOVE_PROJECT`, `UPDATE_SAST_VULNERABILITY_RESOLUTION_SETTING`
+- `base_access_level` (String) The base access level for the custom role. Valid values are: `DEVELOPER`, `GUEST`, `MAINTAINER`, `MINIMAL_ACCESS`, `OWNER`, `REPORTER`, `SECURITY_MANAGER`
+- `enabled_permissions` (Set of String) All permissions enabled for the custom role. Valid values are: `ADMIN_AI_CATALOG_ITEM`, `ADMIN_AI_CATALOG_ITEM_CONSUMER`, `ADMIN_CICD_VARIABLES`, `ADMIN_COMPLIANCE_FRAMEWORK`, `ADMIN_GROUP_MEMBER`, `ADMIN_INTEGRATIONS`, `ADMIN_MERGE_REQUEST`, `ADMIN_PROTECTED_BRANCH`, `ADMIN_PROTECTED_ENVIRONMENTS`, `ADMIN_PUSH_RULES`, `ADMIN_RUNNERS`, `ADMIN_SECURITY_ATTRIBUTES`, `ADMIN_TERRAFORM_STATE`, `ADMIN_VULNERABILITY`, `ADMIN_WEB_HOOK`, `APPLY_SECURITY_SCAN_PROFILES`, `ARCHIVE_PROJECT`, `MANAGE_DEPLOY_TOKENS`, `MANAGE_GROUP_ACCESS_TOKENS`, `MANAGE_MERGE_REQUEST_SETTINGS`, `MANAGE_PROJECT_ACCESS_TOKENS`, `MANAGE_SECURITY_POLICY_LINK`, `READ_CODE`, `READ_COMPLIANCE_DASHBOARD`, `READ_CRM_CONTACT`, `READ_DEPENDENCY`, `READ_RUNNERS`, `READ_VULNERABILITY`, `REMOVE_GROUP`, `REMOVE_PROJECT`, `UPDATE_SAST_VULNERABILITY_RESOLUTION_SETTING`
 - `name` (String) Name for the member role.
 
 ### Optional

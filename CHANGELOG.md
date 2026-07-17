@@ -1,3 +1,41 @@
+## 19.2.0 (2026-07-16)
+
+Note - we've updated the way we generate changelogs slightly in this release in order to make generating them easier for the maintainer group. As a result, new resources and improvements to existing resources
+will now both be grouped under "FEATURES" instead of called out in separate categories.
+
+### KNOWN ISSUE (1 issue)
+
+There is a known issue currently with the `gitlab_project_label` and `gitlab_group_label` resources, and their
+corresponding `gitlab_project_label` and `gitlab_group_label` data sources. When using provider versions 18.0 -> 19.1
+with GitLab 19.2.0, the provider will return an error, or will result in a plan-after-apply due to a bug with the
+project/group labels "get single label by ID" API. See https://gitlab.com/gitlab-org/gitlab/-/work_items/606194 for
+more details. We have applied a patch to these resources and data sources temporarily to use the List API instead
+so that users can continue to use them, but this patch will only be available if you upgrade to the 19.2 version of
+the provider.
+
+
+### FEATURES (9 changes)
+
+- resource/gitlab_group_security_policy_attachment:  [Add timeout block support to group_security_policy_attachment](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/6b93782ee82ad7a57f48076483b4fcbb8e7c0220) by @PatrickRice ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3182))
+- resource/gitlab_admin_role, resource/gitlab_member_role:  [Add admin_role resources, allowing the management of custom admin roles](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/a14f83a8108b768054e985719d1d847d352694ae) by @gkepas ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3171))
+- resource/gitlab_project_secret_detection_validity_checks:  [Add gitlab_project_secret_detection_validity_checks resource, allowing management of secrets detection checks on Projects](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/7cf8f2073beac1bbc8a23446376cf1aa4dfcc945) by @gkepas ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3168))
+- data/gitlab_group, data/gitlab_groups:  [Add 9 missing group attributes](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/c11a1a21172d41edda060fc419ed56cf2a4d257d) by @jspagnola ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3159))
+- resource/gitlab_member_role:  [Add SECURITY_MANAGER to allowedBaseAccessLevels in gitlab_member_role](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/27434fac0a701fa8f4cd7129f81b7e7aea7d0c4d) by @mohamedmongy96 ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3155))
+- resource/gitlab_project:  [Add issue_branch_template attribute to gitlab_project resource](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/d28624219ecb8a1de4f3f42b46f91ebb7d9b0fc7) by @lu.cesarano ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3150))
+- data/gitlab_project_error_tracking_settings, resource/gitlab_project_error_tracking_client_key, resource/gitlab_project_error_tracking_settings:  [Add resources to allow managing the error tracking settings](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/5e2b479b854f3c30461466fd31adb162d42901fe) by @jspagnola ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3129))
+- resource/gitlab_group_access_token, resource/gitlab_group_ldap_link, resource/gitlab_group_membership, resource/gitlab_group_share_group, resource/gitlab_project_access_token, resource/gitlab_project_membership, resource/gitlab_project_share_group:  [Add security manager access level as an allowed access level](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/2f6d5a5bc9a37456389c0dfb2cd99d3a11bd5a94) by @kimsondrup ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3124))
+- [Add ability to validate attributes based off offering (CE vs EE)](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/c75cecc7a16248af5fa878d73646ac5e7a661dbe) by @heidi.berry ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3112))
+
+### BUG FIXES (7 changes)
+
+- resource/gitlab_group_membership:  [fix: handle 404 gracefully on gitlab_group_membership delete](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/92fcc5d0af709d7072a85d02a8bea6b060a6561a) by @PatrickRice ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3181))
+- resource/gitlab_branch_protection:  [Add harden check post-operation to branch protection](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/08ff3e78334abd8d7d3c186e95957dc660a286ab) by @PatrickRice ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3179))
+- resource/gitlab_branch_protection:  [fix: handle 404 gracefully on gitlab_branch_protection delete](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/3546219cff855b03e8302c16095bd3b92b7b1264) by @PatrickRice ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3176))
+- resource/gitlab_project_target_branch_rule:  [Guard against errors in branch rule resources](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/bfef46fb23126465da9de6a1e24989d14cf27d49) by @gkepas ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3173))
+- resource/gitlab_branch_protection:  [Guard branch_protection with pure access-level entries checks](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/9bfeb8a9cdfb81e89c09480ef9a6a67ac6120f19) by @gkepas ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3166))
+- resource/gitlab_project_job_token_scopes:  [Fix self-reference filtering for uppercase project paths in gitlab_project_job_token_scopes](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/b05947d28228c5e9543dc15ef079395df1651d6d) by @catarina_ferreira ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3114))
+- data/gitlab_pipeline_schedule, data/gitlab_pipeline_schedules:  [Fix nil pointer issue when pipeline schedule owner is deleted](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/548f603f0688b4e6b5666d63f60d0af0fee4953b) by @Vinay0910 ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3075))
+
 ## 19.1.0 (2026-06-18)
 
 ### FEATURES (6 changes)

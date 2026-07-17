@@ -83,11 +83,24 @@ resource "gitlab_group_security_policy_attachment" "my-policy" {
 - `group` (String) The ID or Full Path of the group which will have the security policy project assigned to it.
 - `policy_project` (String) The ID or Full Path of the security policy project.
 
+### Optional
+
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
+
 ### Read-Only
 
 - `group_graphql_id` (String) The GraphQL ID of the group to which the security policty project will be attached.
 - `id` (String) The ID of this Terraform resource. In the format of `<group>:<policy_project>`.
 - `policy_project_graphql_id` (String) The GraphQL ID of the security policy project.
+
+<a id="nestedatt--timeouts"></a>
+### Nested Schema for `timeouts`
+
+Optional:
+
+- `create` (String) How long to wait for the security policy attachment eventual consistency check. Defaults to 5 minutes.
+- `delete` (String) How long to wait for the security policy attachment eventual consistency check. Defaults to 5 minutes.
+- `update` (String) How long to wait for the security policy attachment eventual consistency check. Defaults to 5 minutes.
 
 ## Import
 

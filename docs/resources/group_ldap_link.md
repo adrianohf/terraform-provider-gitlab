@@ -30,7 +30,7 @@ resource "gitlab_group_ldap_link" "test" {
 ### Required
 
 - `group` (String) The ID or URL-encoded path of the group
-- `group_access` (String) Minimum access level for members of the LDAP group. Valid values are: `no one`, `minimal`, `guest`, `planner`, `reporter`, `developer`, `maintainer`, `owner`
+- `group_access` (String) Minimum access level for members of the LDAP group. Valid values are: `no one`, `minimal`, `guest`, `planner`, `reporter`, `security_manager`, `developer`, `maintainer`, `owner`
 - `ldap_provider` (String) The name of the LDAP provider as stored in the GitLab database. Note that this is NOT the value of the `label` attribute as shown in the web UI. In most cases this will be `ldapmain` but you may use the [LDAP check rake task](https://docs.gitlab.com/administration/raketasks/ldap/#check) for receiving the LDAP server name: `LDAP: ... Server: ldapmain`
 
 ### Optional

@@ -28,7 +28,7 @@ resource "gitlab_project_share_group" "test" {
 
 ### Required
 
-- `group_access` (String) The access level to grant the group for the project. Valid values are: `no one`, `minimal`, `guest`, `planner`, `reporter`, `developer`, `maintainer`, `owner`
+- `group_access` (String) The access level to grant the group for the project. Valid values are: `no one`, `minimal`, `guest`, `planner`, `reporter`, `security_manager`, `developer`, `maintainer`, `owner`
 - `group_id` (Number) The id of the group.
 - `project` (String) The ID or URL-encoded path of the project.
 
