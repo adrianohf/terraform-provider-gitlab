@@ -1,3 +1,9 @@
+## 19.2.1 (2026-07-22)
+
+### BUG FIXES (1 change)
+
+- resource/gitlab_branch_protection:  [Fix error due to API-injected defaults for explicitly empty allowed_to_* slices in branch protection (issue #6861)](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/commit/2864247e4135b2e361b22714674d6fcc799339bd) by @PatrickRice ([merge request](https://gitlab.com/gitlab-org/terraform-provider-gitlab/-/merge_requests/3193))
+
 ## 19.2.0 (2026-07-16)
 
 Note - we've updated the way we generate changelogs slightly in this release in order to make generating them easier for the maintainer group. As a result, new resources and improvements to existing resources
